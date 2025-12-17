@@ -1,0 +1,14 @@
+services:
+  personal-assistant:
+    build: .
+    ports:
+      - "7860:7860"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PUSHOVER_TOKEN=${PUSHOVER_TOKEN}
+      - PUSHOVER_USER=${PUSHOVER_USER}
+      - GRADIO_SERVER_NAME=0.0.0.0
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    command: python app.py
